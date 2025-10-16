@@ -1,0 +1,85 @@
+env-data-network/
+│
+├── edge/
+│   ├── data_collector/
+│   │   ├── main.py                   # Main entry point for data collection loop
+│   │   ├── sensors/                  # Individual sensor adapters
+│   │   │   ├── wind_sensor.py
+│   │   │   ├── air_sensor.py
+│   │   │   ├── purple_air.py
+│   │   │   └── black_carbon.py
+│   │   ├── storage/
+│   │   │   ├── db.py                 # SQLAlchemy models + session mgmt for SQLite
+│   │   │   └── schema.py             # ORM models, DDL migrations (if needed)
+│   │   ├── transmission/
+│   │   │   ├── uploader.py           # HTTP upload handler to Azure Function endpoint
+│   │   │   └── retry_queue.py        # Retry logic for failed uploads
+│   │   ├── config/
+│   │   │   ├── config.json           # Upload frequency, API URL, etc.
+│   │   │   └── secrets.json          # Function keys, local credentials (gitignored)
+│   │   ├── utils/
+│   │   │   ├── logging_utils.py
+│   │   │   ├── time_utils.py
+│   │   │   └── net_utils.py
+│   │   └── tests/
+│   │       └── test_collector.py
+│   ├── Dockerfile                    # For optional containerized edge runtime
+│   ├── requirements.txt              # Python dependencies (SQLAlchemy, requests)
+│   └── README.md
+│
+├── cloud/
+│   ├── function_app/
+│   │   ├── HttpIngestDataFunction/           # HTTP-triggered Azure Function app as the ingestion endpoint
+│   │   │   └── __init__.py or run.cs (depending on language)
+│   │   ├── optional/
+│   │   │   └── iot-hub/              # (optional) IoT Hub ingestion pipeline
+│   │   ├── ConfigFunction/			  # Retrieve updated configurations
+│   │   ├── StatusFunction/			  # Test if API endpoint is up
+│   │   ├── shared/
+│   │   │   ├── db_client.py or db_service.cs  # DB interaction logic
+│   │   │   ├── models/
+│   │   │   └── validation/
+│   │   ├── tests/
+│   │   └── host.json
+│   │   └── local.settings.json
+│   │   └── README.md
+│   │
+│   ├── database/
+│   │   ├── schema.sql                # PostgreSQL/Timescale schema
+│   │   ├── init.sql
+│   │   ├── migration/                # Liquibase or SQL migration scripts
+│   │   └── README.md
+│   │
+│   │
+│   └── README.md
+│
+├── public-data-portal/
+│   ├── web/
+│   │   ├── r-shiny-app/ vue-app/ or asp.net-app/    # For eventual public data portal
+│   │   └── README.md
+│   └── README.md
+│
+├── infrastructure/
+│   ├── bicep/ or ARM/
+│   │   ├── Infrastructure as code automations
+│   │   └── README.md
+│   ├── pipelines/
+│   │   ├── github-actions/
+│   │   │   ├── deploy-function.yml			# Deploy Azure Function App
+│   │   │   ├── deploy-edge.yml				# Build and package edge code for device sync or container image
+│   │   │   ├── deploy-db.yml				# Run Liquibase / SQL migrations against Azure PostgreSQL
+│   │   │   ├── lint-test.yml				# Run Python (flake8, pytest) and .NET (dotnet test) tests
+│   │   │   └── tag-release.yml				# Tag versions and generate release notes automatically
+│   │   └── README.md
+│   └── README.md
+│
+├── docs/
+│   ├── architecture-diagram.png
+│   ├── deployment-guide.md
+│   ├── sensor-configurations.md
+│   ├── data-schema.md
+│   └── README.md
+│
+├── .gitignore
+├── LICENSE
+└── README.md
