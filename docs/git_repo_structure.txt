@@ -1,4 +1,6 @@
-env-data-network/
+# Proposed git repository structure (guideline)
+
+air-quality-data-collection-system (AQDCS)/
 │
 ├── edge/
 │   ├── data_collector/
