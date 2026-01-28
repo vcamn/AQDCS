@@ -128,7 +128,7 @@ if __name__ == '__main__':
     device = DEVICES[0]
     print(f"Using wind sensor device: {device}")
     WINDSENSOR = WindSensor(device)
-    OUTPUT_PATH = './logs'
+    OUTPUT_PATH = './sensor_logs'
     try:
         loop(WINDSENSOR, OUTPUT_PATH)
     except KeyboardInterrupt:

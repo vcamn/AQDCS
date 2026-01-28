@@ -95,7 +95,7 @@ if __name__ == '__main__':
     device = DEVICES[0]
     print(f"Using AggieAir device: {device}")
     VOCSENSOR = AggieAir(device)
-    OUTPUT_PATH = './logs'
+    OUTPUT_PATH = './sensor_logs'
     try:
         loop(VOCSENSOR, OUTPUT_PATH)
     except KeyboardInterrupt:
