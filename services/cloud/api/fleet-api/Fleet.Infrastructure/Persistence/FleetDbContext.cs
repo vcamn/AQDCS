@@ -16,4 +16,13 @@ public class FleetDbContext : DbContext
     public DbSet<Device> Devices => Set<Device>();
     public DbSet<Sensor> Sensors => Set<Sensor>();
     public DbSet<SensorCalibration> SensorCalibrations => Set<SensorCalibration>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.HasDefaultSchema("metadata");
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(FleetDbContext).Assembly);
+    }
 }

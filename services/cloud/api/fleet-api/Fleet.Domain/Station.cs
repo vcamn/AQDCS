@@ -10,7 +10,7 @@ public class Station
 
     public string StationCode { get; set; }
 
-    public string DeploymentStatus { get; set; }
+    public string Description { get; set; }
 
     public DateTime? InstalledAtUtc { get; set; }
 

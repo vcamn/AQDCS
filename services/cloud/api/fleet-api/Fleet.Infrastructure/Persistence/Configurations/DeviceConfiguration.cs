@@ -1,0 +1,45 @@
+using System;
+using Fleet.Domain;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Fleet.Infrastructure.Persistence.Configurations;
+
+public class DeviceConfiguration : IEntityTypeConfiguration<Device>
+{
+    public void Configure(EntityTypeBuilder<Device> builder)
+    {
+        builder.ToTable("devices");
+
+        builder.HasKey(e => e.Id);
+
+        builder.Property(e => e.DeviceIdentifier)
+               .IsRequired()
+               .HasMaxLength(48);
+
+        builder.Property(e => e.DeviceType)
+               .IsRequired()
+               .HasMaxLength(32);
+
+        builder.Property(e => e.SerialNumber)
+               .IsRequired(false)
+               .HasMaxLength(64);
+
+        builder.Property(e => e.MacAddress)
+               .IsRequired(false)
+               .HasMaxLength(24);
+
+        builder.Property(e => e.IoTHubDeviceId)
+               .IsRequired(false)
+               .HasMaxLength(128);
+
+        builder.Property(e => e.FirmwareVersion)
+               .IsRequired(false)
+               .HasMaxLength(32);
+
+        builder.HasOne(e => e.Station)
+               .WithMany(s => s.Devices)
+               .HasForeignKey(e => e.StationId)
+               .OnDelete(DeleteBehavior.NoAction);
+    }
+}

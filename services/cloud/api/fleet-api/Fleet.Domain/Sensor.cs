@@ -18,5 +18,5 @@ public class Sensor
 
     public Device Device { get; set; }
 
-    public ICollection<SensorCalibration> Calibrations { get; set; }
+    public ICollection<SensorCalibration> SensorCalibrations { get; set; }
 }
