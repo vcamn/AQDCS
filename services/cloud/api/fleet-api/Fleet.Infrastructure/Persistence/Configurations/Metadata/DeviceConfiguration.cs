@@ -40,6 +40,7 @@ public class DeviceConfiguration : IEntityTypeConfiguration<Device>
         builder.HasOne(e => e.Station)
                .WithMany(s => s.Devices)
                .HasForeignKey(e => e.StationId)
+               .IsRequired()
                .OnDelete(DeleteBehavior.NoAction);
     }
 }

@@ -14,7 +14,10 @@ public class FleetDbContext : DbContext
     public DbSet<Site> Sites => Set<Site>();
     public DbSet<Station> Stations => Set<Station>();
     public DbSet<Device> Devices => Set<Device>();
+    public DbSet<IntegrationTemplate> IntegrationTemplates => Set<IntegrationTemplate>();
+    public DbSet<SensorType> SensorTypes => Set<SensorType>();
     public DbSet<Sensor> Sensors => Set<Sensor>();
+    public DbSet<SensorIntegration> SensorIntegrations => Set<SensorIntegration>();
     public DbSet<SensorCalibration> SensorCalibrations => Set<SensorCalibration>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

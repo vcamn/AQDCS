@@ -1,4 +1,6 @@
-﻿namespace Fleet.Domain.Entities
+﻿using System.Diagnostics.Metrics;
+
+namespace Fleet.Domain.Entities
 {
     public class Site
     {
@@ -8,17 +10,29 @@
 
         public string AddressLine1 { get; set; }
 
+        public string AddressLine2 { get; set; }
+
         public string City { get; set; }
 
         public string State { get; set; }
 
         public string PostalCode { get; set; }
 
+        public string Country { get; set; }
+
         public double? Latitude { get; set; }
 
         public double? Longitude { get; set; }
 
         public string DeploymentStatus { get; set; }
+
+        public DateTime? InstalledAtUtc { get; set; }
+
+        public DateTime? LastMaintenanceAtUtc { get; set; }
+
+        public string ContactName { get; set; }
+
+        public string ContactEmail { get; set; }
 
         public DateTime CreatedAtUtc { get; set; }
 

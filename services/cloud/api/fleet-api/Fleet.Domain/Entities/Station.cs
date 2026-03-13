@@ -12,13 +12,13 @@ namespace Fleet.Domain.Entities
 
         public string Description { get; set; }
 
-        public DateTime? InstalledAtUtc { get; set; }
-
         public DateTime CreatedAtUtc { get; set; }
 
         public DateTime UpdatedAtUtc { get; set; }
 
         public Site Site { get; set; }
+
+        public ICollection<Sensor> Sensors { get; set; }
 
         public ICollection<Device> Devices { get; set; }
     }

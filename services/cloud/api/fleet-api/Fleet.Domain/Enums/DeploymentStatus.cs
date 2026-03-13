@@ -1,8 +1,12 @@
-using System;
-
 namespace Fleet.Domain.Enums;
 
-public class DeploymentStatus
+public enum DeploymentStatus
 {
-
+    Planned,
+    Approved,
+    Provisioning,
+    Active,
+    Maintenance,
+    Offline,
+    Retired
 }

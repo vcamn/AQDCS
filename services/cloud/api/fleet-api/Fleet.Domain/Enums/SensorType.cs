@@ -1,8 +1,11 @@
-using System;
-
 namespace Fleet.Domain.Enums;
 
-public class SensorType
+public enum SensorType
 {
-
+    // ["AethLabs", "AggieAir", "LTwind", "PurpleAir", "Other"]
+    AethLabs,
+    AggieAir,
+    LTwind,
+    PurpleAir,
+    Other
 }
